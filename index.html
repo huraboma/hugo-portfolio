@@ -81,36 +81,65 @@
   <div class="container mx-auto px-6 max-w-3xl text-center">
     <h2 class="text-3xl font-semibold mb-4">Let’s Connect</h2>
     <p class="text-gray-700 mb-6">Feel free to reach out using the contact form below. I’ll respond as soon as possible.</p>
-    
-    <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true" class="max-w-xl mx-auto text-left">
-      <!-- Required hidden input for Netlify form handling -->
+
+    <form id="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true" class="max-w-xl mx-auto text-left">
       <input type="hidden" name="form-name" value="contact">
 
-      <!-- Honeypot field -->
+      <!-- Honeypot -->
       <div hidden>
         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
       </div>
 
+      <!-- Error Message Container -->
+      <div id="formErrors" class="text-red-600 mb-4 hidden"></div>
+
       <div class="mb-4">
         <label class="block text-gray-700 font-semibold mb-1">Name</label>
-        <input type="text" name="name" required class="w-full border border-gray-300 rounded px-4 py-2">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-semibold mb-1">Email</label>
-        <input type="email" name="email" required class="w-full border border-gray-300 rounded px-4 py-2">
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 font-semibold mb-1">Message</label>
-        <textarea name="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2"></textarea>
+        <input type="text" name="name" id="name" required class="w-full border border-gray-300 rounded px-4 py-2">
       </div>
 
-      <!-- reCAPTCHA widget -->
+      <div class="mb-4">
+        <label class="block text-gray-700 font-semibold mb-1">Email</label>
+        <input type="email" name="email" id="email" required class="w-full border border-gray-300 rounded px-4 py-2">
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 font-semibold mb-1">Message</label>
+        <textarea name="message" id="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2"></textarea>
+      </div>
+
+      <!-- reCAPTCHA -->
       <div class="mb-4" data-netlify-recaptcha="true"></div>
 
       <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800">Send Message</button>
     </form>
   </div>
 </section>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const message = document.getElementById("message");
+    const errorContainer = document.getElementById("formErrors");
+
+    let errors = [];
+
+    if (!name.value.trim()) errors.push("Name is required.");
+    if (!email.value.trim()) errors.push("Email is required.");
+    if (!message.value.trim()) errors.push("Message is required.");
+
+    // Check for visible Netlify reCAPTCHA iframe
+    const recaptcha = document.querySelector("[data-netlify-recaptcha] iframe");
+    if (!recaptcha) errors.push("reCAPTCHA verification failed. Please try again.");
+
+    if (errors.length > 0) {
+      e.preventDefault();
+      errorContainer.innerHTML = errors.join("<br>");
+      errorContainer.classList.remove("hidden");
+    }
+  });
+</script>
 
   <!-- Footer -->
   <footer class="bg-blue-900 text-white py-4 text-center">
