@@ -82,40 +82,53 @@
     <h2 class="text-3xl font-semibold mb-4">Let’s Connect</h2>
     <p class="text-gray-700 mb-6">Feel free to reach out using the contact form below. I’ll respond as soon as possible.</p>
 
-    <form id="contactForm" name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true" data-netlify-recaptcha="true" class="max-w-xl mx-auto text-left">
+    <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="max-w-xl mx-auto text-left">
+      <!-- Required hidden fields -->
       <input type="hidden" name="form-name" value="contact">
+      <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
 
       <!-- Honeypot -->
       <div hidden>
         <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
       </div>
 
-      <!-- Error Message Container -->
+      <!-- Error Messages -->
       <div id="formErrors" class="text-red-600 mb-4 hidden"></div>
 
+      <!-- Name -->
       <div class="mb-4">
         <label class="block text-gray-700 font-semibold mb-1">Name</label>
         <input type="text" name="name" id="name" required class="w-full border border-gray-300 rounded px-4 py-2">
       </div>
 
+      <!-- Email -->
       <div class="mb-4">
         <label class="block text-gray-700 font-semibold mb-1">Email</label>
         <input type="email" name="email" id="email" required class="w-full border border-gray-300 rounded px-4 py-2">
       </div>
 
+      <!-- Message -->
       <div class="mb-4">
         <label class="block text-gray-700 font-semibold mb-1">Message</label>
         <textarea name="message" id="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2"></textarea>
       </div>
 
-      <!-- reCAPTCHA -->
-      <div class="mb-4" data-netlify-recaptcha="true"></div>
+      <!-- Google reCAPTCHA Widget -->
+      <div class="mb-4">
+        <div class="g-recaptcha" data-sitekey="6LdOAogrAAAAABOTfsyNbr9pXvqa4pEXgHOw-x3d"></div>
+      </div>
 
-      <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800">Send Message</button>
+      <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800">
+        Send Message
+      </button>
     </form>
   </div>
 </section>
 
+<!-- Google reCAPTCHA script -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<!-- Form validation script -->
 <script>
   document.getElementById("contactForm").addEventListener("submit", function (e) {
     const name = document.getElementById("name");
@@ -123,20 +136,21 @@
     const message = document.getElementById("message");
     const errorContainer = document.getElementById("formErrors");
 
+    const recaptchaToken = grecaptcha.getResponse();
     let errors = [];
 
     if (!name.value.trim()) errors.push("Name is required.");
     if (!email.value.trim()) errors.push("Email is required.");
     if (!message.value.trim()) errors.push("Message is required.");
-
-    // Check for visible Netlify reCAPTCHA iframe
-    const recaptcha = document.querySelector("[data-netlify-recaptcha] iframe");
-    if (!recaptcha) errors.push("reCAPTCHA verification failed. Please try again.");
+    if (!recaptchaToken) errors.push("Please complete the reCAPTCHA challenge.");
 
     if (errors.length > 0) {
       e.preventDefault();
       errorContainer.innerHTML = errors.join("<br>");
       errorContainer.classList.remove("hidden");
+    } else {
+      errorContainer.classList.add("hidden");
+      document.getElementById("g-recaptcha-response").value = recaptchaToken;
     }
   });
 </script>
