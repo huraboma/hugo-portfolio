@@ -4,7 +4,7 @@ Welcome to my personal portfolio website!
 
 ## 🌐 Live Site
 Deployed on **Netlify**  
-🔗 [https://hugo-bohorquez.netlify.app](https://hugo-bohorquez.netlify.app)
+🔗 [https://hu-go.live](https://hu-go.live)
 
 ## 💼 About Me
 Experienced infrastructure and cloud professional with over 15 years in global enterprise environments. I specialize in:
