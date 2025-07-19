@@ -6,71 +6,49 @@ Welcome to my personal portfolio website!
 Deployed on **Netlify**  
 🔗 [https://hu-go.live](https://hu-go.live)
 
-## Professional Summary  
-Results-driven Cloud Engineer with over 15 years of experience in enterprise IT, specializing in Azure cloud infrastructure, database administration, and automation. Proficient in deploying and managing Azure PaaS/IaaS services, PowerShell scripting, and Terraform for CI/CD pipelines. Bilingual in English and Spanish, with a proven ability to collaborate across global teams, optimize system performance, and enhance security. Adept at building scalable solutions and delivering exceptional stakeholder support.
+# Welcome to My GitHub Profile
 
----
+Hi, I'm a passionate **Cloud & Infrastructure Professional** with over 15 years of experience in enterprise IT, specializing in cloud infrastructure, automation, and database management. I thrive on building scalable, secure, and efficient solutions using Azure and open-source technologies. Fluent in English and Spanish, I enjoy collaborating on innovative projects and continuously learning new tools and techniques.
 
-## Technical Skills  
-- **Cloud Platforms**: Azure (PaaS/IaaS, Entra ID, App Services, VMs, VNet, Defender for Cloud)  
-- **Scripting & Automation**: PowerShell, Azure CLI, Terraform, Bicep  
-- **Databases**: Azure SQL, MS SQL Server (2005–2022), MySQL, Oracle 10-12c  
-- **Virtualization**: Proxmox, Docker, LXC, VMware ESXi, Hyper-V  
-- **Networking**: TCP/IP, DNS, DHCP, VPN, Azure VNet, Private Endpoints, Firewalls  
-- **Reporting & Monitoring**: Power BI, MS SSRS, Azure Monitor  
-- **ITSM Tools**: ServiceNow, JIRA, Salesforce  
-- **Other**: Active Directory, MS Office 365, MS Dynamics CRM, SAP Business Objects, Git, IIS, Apache Tomcat  
+## About Me
+- **Expertise**: Designing and managing Azure cloud environments, automating infrastructure with PowerShell and Terraform, and optimizing database performance.
+- **Focus**: Delivering robust cloud solutions with a strong emphasis on security, scalability, and operational excellence.
+- **Current Learning**: Preparing for Azure Administrator Associate (AZ-104) certification to deepen my cloud expertise.
 
----
+## Key Skills
+- **Cloud Platforms**: Azure (PaaS/IaaS, Entra ID, App Services, VMs, VNet, Defender for Cloud)
+- **Automation & Scripting**: PowerShell, Azure CLI, Terraform
+- **Databases**: Azure SQL, MS SQL Server, MySQL
+- **Virtualization**: Proxmox, Docker, LXC, VMware ESXi
+- **Networking & Security**: TCP/IP, DNS, VPN, Azure VNet, Firewalls, MFA
+- **Monitoring & Reporting**: Power BI, Azure Monitor, MS SSRS
+- **Tools**: Git, ServiceNow, JIRA
 
-## Certifications  
-- Microsoft Azure Fundamentals (AZ-900)  
-- Microsoft Azure Data Fundamentals (DP-900)  
-- Currently preparing for Azure Administrator Associate (AZ-104)  
-- OpenText KCS Certified  
+## Professional Experience
+- **Cloud Operations Consultant** (2022–2024)  
+  Deployed and managed Azure cloud environments, including App Services and Azure SQL. Automated infrastructure with PowerShell and Terraform, reducing manual tasks by 20%. Implemented security measures like MFA and VNets, and built CI/CD pipelines using Azure DevOps.
 
----
+- **Application Support Engineer** (2015–2022)  
+  Administered 300+ SQL Server instances, handling migrations, performance tuning, and security. Supported enterprise applications and developed Power BI reports to enhance data accessibility for global teams.
 
-## Professional Experience  
+- **Technical Support Analyst** (2012–2015)  
+  Provided support for enterprise software, built virtual test environments, and authored knowledge base articles, improving issue resolution efficiency by 30%.
 
-**Cloud Operations Consultant**  
-RPMGlobal, Toronto, ON | May 2022 – Oct 2024  
-- Deployed and managed Azure PaaS/IaaS environments, including App Services, Azure SQL, and elastic pools, optimizing data security and performance.  
-- Automated resource provisioning using PowerShell, Azure CLI, and Terraform, reducing manual configuration by 20%.  
-- Configured Power BI workspaces, security, and reports, enhancing data-driven decision-making for stakeholders.  
-- Implemented Azure security measures, including MFA, VNets, private endpoints, and Defender for Cloud, ensuring compliance and robust access control.  
-- Built and maintained multi-tier test and production environments using Windows Server, MSSQL, and IIS.  
-- Supported CI/CD pipelines with Azure DevOps and Terraform for efficient application deployments.  
-- Collaborated with global teams in English and Spanish to resolve issues and drive critical application migrations.  
+## Projects
+Explore my repositories for hands-on projects, including:
+- **Azure Web App Deployment**: Built a scalable web app with Azure Static Web Apps and CI/CD via GitHub Actions.
+- **Homelab Monitoring Dashboard**: Created a Grafana dashboard for Proxmox using Docker and PowerShell scripts.
+- **Azure SQL Backup Automation**: Automated Azure SQL backups to Blob Storage with PowerShell and Azure Monitor alerts.
 
-**Application Support Engineer**  
-Nutreco / Trouw Nutrition Canada, Guelph, ON | Dec 2015 – May 2022  
-- Administered 300+ SQL Server instances, performing migrations, performance tuning, patching, and security configurations.  
-- Supported global enterprise applications, including MS Dynamics CRM and SAP Business Objects, ensuring operational continuity.  
-- Developed and maintained Power BI and SSRS reports, improving data accessibility for marketing and sales teams.  
-- Coordinated with vendors to resolve system issues and implement upgrades, enhancing system reliability.  
-- Documented technical processes and troubleshooting guides, streamlining support operations.  
+## Certifications
+- Microsoft Azure Fundamentals (AZ-900)
+- Microsoft Azure Data Fundamentals (DP-900)
+- OpenText KCS Certified
 
-**Technical Support Analyst**  
-OpenText Corporation, Waterloo, ON | Nov 2012 – Dec 2015  
-- Provided 2nd-level support for enterprise software, including document management and business intelligence platforms.  
-- Built virtual test environments using VMware and Hyper-V, improving issue resolution efficiency by 30%.  
-- Authored knowledge base articles, reducing repeat queries by 15%.  
-- Collaborated with developers to debug and patch applications, ensuring timely resolutions.  
+## Connect
+- [LinkedIn](https://www.linkedin.com/in/hugobohorquez)
 
----
-
-## Education  
-**Programmer Analyst/Internet Solutions Developer Diploma**  
-CDI College of Business and Technology, Toronto, ON  
-
----
-
-## Additional Training  
-- SQL Server Administration  
-- Microsoft Power Platform Fundamentals  
-- System Analysis & Design  
-- Object-Oriented Design Concepts
+Feel free to check out my repositories or reach out to collaborate on cloud, automation, or open-source projects!
 
 ---
 
