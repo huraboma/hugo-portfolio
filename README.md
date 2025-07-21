@@ -6,51 +6,55 @@ Welcome to my personal portfolio website!
 Deployed on **Netlify**  
 🔗 [https://hu-go.live](https://hu-go.live)
 
-# Welcome to My GitHub Profile
+## 👋 About Me
 
-Hi, I'm a passionate **Cloud & Infrastructure Professional** with over 15 years of experience in enterprise IT, specializing in cloud infrastructure, automation, and database management. I thrive on building scalable, secure, and efficient solutions using Azure and open-source technologies. Fluent in English and Spanish, I enjoy collaborating on innovative projects and continuously learning new tools and techniques.
+Hi, I'm a passionate **Cloud & Infrastructure Professional** with extensive experience supporting and modernizing enterprise environments. I specialize in cloud infrastructure, automation, and database systems—delivering secure and scalable solutions using Azure and open-source tools.
 
-## About Me
-- **Expertise**: Designing and managing Azure cloud environments, automating infrastructure with PowerShell and Terraform, and optimizing database performance.
-- **Focus**: Delivering robust cloud solutions with a strong emphasis on security, scalability, and operational excellence.
-- **Current Learning**: Preparing for Azure Administrator Associate (AZ-104) certification to deepen my cloud expertise.
+I'm fluent in English and Spanish and enjoy working across technical and client-facing teams. Always learning, I’m currently preparing for the **AZ-104 Azure Administrator** certification to deepen my expertise.
 
-## Key Skills
-- **Cloud Platforms**: Azure (PaaS/IaaS, Entra ID, App Services, VMs, VNet, Defender for Cloud)
+## 🔧 Key Skills
+
+- **Cloud Platforms**: Azure (App Services, VMs, SQL, Entra ID, Defender, VNet)
 - **Automation & Scripting**: PowerShell, Azure CLI, Terraform
 - **Databases**: Azure SQL, MS SQL Server, MySQL
 - **Virtualization**: Proxmox, Docker, LXC, VMware ESXi
-- **Networking & Security**: TCP/IP, DNS, VPN, Azure VNet, Firewalls, MFA
-- **Monitoring & Reporting**: Power BI, Azure Monitor, MS SSRS
-- **Tools**: Git, ServiceNow, JIRA
+- **Networking & Security**: TCP/IP, DNS, VPN, MFA, Firewall Policies
+- **Monitoring & Reporting**: Power BI, Azure Monitor, SSRS
+- **Tools & Workflow**: Git, JIRA, ServiceNow, Documentation
 
-## Professional Experience
-- **Cloud Operations Consultant** (2022–2024)  
-  Deployed and managed Azure cloud environments, including App Services and Azure SQL. Automated infrastructure with PowerShell and Terraform, reducing manual tasks by 20%. Implemented security measures like MFA and VNets, and built CI/CD pipelines using Azure DevOps.
+## 💼 Technical Support & Operations Consultant
 
-- **Application Support Engineer** (2015–2022)  
-  Administered 300+ SQL Server instances, handling migrations, performance tuning, and security. Supported enterprise applications and developed Power BI reports to enhance data accessibility for global teams.
+- **Enterprise Technical Support**: Supported business-critical applications, created virtual testing environments, and improved ticket resolution with thorough documentation.
+- **Application Operations**: Managed 300+ SQL Server instances, handled migrations and performance tuning, and created Power BI dashboards for enterprise teams.
+- **Cloud Solutions & Automation**: Deployed Azure infrastructure using PowerShell and Terraform, automated backups and alerts, and implemented security best practices like MFA and VNet integration.
 
-- **Technical Support Analyst** (2012–2015)  
-  Provided support for enterprise software, built virtual test environments, and authored knowledge base articles, improving issue resolution efficiency by 30%.
+## 🚀 Projects
 
-## Projects
-Explore my repositories for hands-on projects, including:
-- **Azure Web App Deployment**: Built a scalable web app with Azure Static Web Apps and CI/CD via GitHub Actions.
-- **Homelab Monitoring Dashboard**: Created a Grafana dashboard for Proxmox using Docker and PowerShell scripts.
-- **Azure SQL Backup Automation**: Automated Azure SQL backups to Blob Storage with PowerShell and Azure Monitor alerts.
+Explore my repositories for real-world examples, including:
 
-## Certifications
-- Microsoft Azure Fundamentals (AZ-900)
-- Microsoft Azure Data Fundamentals (DP-900)
+- **Azure Web App Deployment**  
+  Built a secure web app using Azure Static Web Apps, SQL, and GitHub Actions for CI/CD.
+
+- **Homelab Monitoring Dashboard**  
+  Monitored a Proxmox environment using Grafana, Docker, and custom PowerShell scripts.
+
+- **Azure SQL Backup Automation**  
+  Automated backups to Azure Blob Storage using PowerShell with monitoring and alerting.
+
+## 📜 Certifications
+
+- Microsoft Azure Fundamentals (AZ-900)  
+- Microsoft Azure Data Fundamentals (DP-900)  
 - OpenText KCS Certified
 
-## Connect
-- [LinkedIn](https://www.linkedin.com/in/hugobohorquez)
+## 🤝 Connect
 
-Feel free to check out my repositories or reach out to collaborate on cloud, automation, or open-source projects!
+- 🔗 [LinkedIn](https://www.linkedin.com/in/hugobohorquez)
+
+Feel free to explore my projects or reach out to collaborate on cloud, automation, or open-source initiatives.
 
 ---
 
 ### 📝 License
-This website is licensed under the MIT License. Feel free to use and adapt it for personal use.
+
+This website is licensed under the **MIT License**. Feel free to reuse and adapt it for your own portfolio.
