@@ -1,121 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hugo Bohorquez | Cloud & Infrastructure Professional</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hugo Bohórquez - Cloud Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .nav-link:hover { color: #2dd4bf; transition: color 0.3s; }
+    @media (max-width: 768px) {
+      .sidebar { position: static; width: 100%; }
+      .main-content { margin-left: 0; }
+    }
+  </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
-  <!-- Hero Section -->
-  <section class="bg-blue-900 text-white py-20">
-    <div class="container mx-auto px-6 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm Hugo Bohorquez</h1>
-      <p class="text-xl">Cloud Administrator | Infrastructure Specialist | Automation Enthusiast</p>
-      <p class="mt-4 text-md">Helping businesses build secure, scalable, and modern cloud environments.</p>
-      <a href="#contact" class="mt-6 inline-block bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold">Get in Touch</a>
+<body class="bg-white text-gray-800">
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar fixed top-0 left-0 h-full w-48 bg-gray-50 p-6 hidden md:block">
+    <div class="flex flex-col space-y-4">
+      <a href="#home" class="nav-link text-lg font-semibold hover:text-teal-500">Home</a>
+      <a href="#about" class="nav-link text-lg font-semibold hover:text-teal-500">About</a>
+      <a href="#skills" class="nav-link text-lg font-semibold hover:text-teal-500">Skills</a>
+      <a href="#projects" class="nav-link text-lg font-semibold hover:text-teal-500">Projects</a>
+      <a href="#contact" class="nav-link text-lg font-semibold hover:text-teal-500">Contact</a>
     </div>
-  </section>
+  </nav>
 
-  <!-- About Section -->
-  <section class="py-16 bg-gray-100" id="about">
-    <div class="container mx-auto px-6 max-w-4xl">
-      <h2 class="text-3xl font-semibold mb-4">About Me</h2>
-      <p class="text-gray-700 leading-relaxed">
+  <!-- Mobile Navigation -->
+  <nav class="md:hidden bg-gray-50 p-4 sticky top-0 z-10">
+    <div class="flex justify-center space-x-4">
+      <a href="#home" class="nav-link text-sm font-semibold hover:text-teal-500">Home</a>
+      <a href="#about" class="nav-link text-sm font-semibold hover:text-teal-500">About</a>
+      <a href="#skills" class="nav-link text-sm font-semibold hover:text-teal-500">Skills</a>
+      <a href="#projects" class="nav-link text-sm font-semibold hover:text-teal-500">Projects</a>
+      <a href="#contact" class="nav-link text-sm font-semibold hover:text-teal-500">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content md:ml-48 max-w-3xl mx-auto px-4 py-10">
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex flex-col justify-center text-center">
+      <h1 class="text-5xl font-bold mb-4">Hugo Bohórquez</h1>
+      <p class="text-2xl text-gray-600 mb-6">Cloud Administrator | Infrastructure Specialist</p>
+      <p class="text-lg text-gray-600 mb-6">Helping businesses build secure, scalable, and modern cloud environments.</p>
+      <div class="flex justify-center">
+        <a href="https://linkedin.com/in/juandoe" class="text-teal-500 hover:underline">LinkedIn</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
+      <p class="text-lg text-gray-600 leading-relaxed">
         I’m an experienced infrastructure professional with 15+ years in enterprise environments, specializing in Azure cloud solutions, scripting, automation, and secure architecture. I’ve led cloud transformations, implemented monitoring and reporting systems, and collaborated with diverse teams across the globe.
       </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills Section -->
-  <section class="py-16 bg-white" id="skills">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <h2 class="text-3xl font-semibold mb-4">Skills & Technologies</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
-        <ul class="space-y-2">
-          <li>Azure (IaaS/PaaS)</li>
-          <li>Terraform & PowerShell</li>
-          <li>Virtual Networking</li>
-        </ul>
-        <ul class="space-y-2">
-          <li>Azure SQL, MSSQL, MySQL</li>
-          <li>Monitoring (Log Analytics, Power BI)</li>
-          <li>Security (MFA, Defender, Policies)</li>
-        </ul>
-        <ul class="space-y-2">
-          <li>App Service, VMs, Backup</li>
-          <li>Automation & Scripting</li>
-          <li>Jira, GitHub, Documentation</li>
-        </ul>
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-gray-50">
+      <h2 class="text-3xl font-bold mb-6 text-center">Skills & Technologies</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <h3 class="text-xl font-semibold mb-2">Cloud & Automation</h3>
+          <p class="text-gray-600">Azure IaaS/PaaS, Terraform, PowerShell</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-xl font-semibold mb-2">Databases</h3>
+          <p class="text-gray-600">Azure SQL, MSSQL, MySQL</p>
+        </div>
+        <div class="text-center">
+          <h3 class="text-xl font-semibold mb-2">Security & Monitoring</h3>
+          <p class="text-gray-600">MFA, Defender, Log Analytics, Power BI</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Projects Section -->
-  <section class="py-16 bg-gray-100" id="projects">
-    <div class="container mx-auto px-6 max-w-5xl">
-      <h2 class="text-3xl font-semibold mb-6">Highlighted Projects</h2>
-
-      <!-- Project 1 -->
-      <div class="mb-8">
-        <h3 class="text-xl font-bold">Azure Web App with Backend DB & Secure Architecture</h3>
-        <p class="text-gray-700 mt-2">Provisioned a multi-tier app using Terraform, App Services, SQL, and VNet integration. Implemented best practices for secure deployment.</p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-16">
+      <h2 class="text-3xl font-bold mb-6 text-center">Highlighted Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-2">Azure Web App with Backend DB</h3>
+          <p class="text-gray-600">Provisioned a multi-tier app using Terraform, App Services, SQL, and VNet integration. Implemented best practices for secure deployment.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-2">User Access with MFA</h3>
+          <p class="text-gray-600">Managed Entra ID access, implemented dynamic security groups, and enabled Conditional Access MFA for app-level authentication.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-2">Monitoring Dashboard</h3>
+          <p class="text-gray-600">Deployed Azure Monitor and created a custom dashboard showing performance, availability, and diagnostic logs.</p>
+        </div>
       </div>
+    </section>
 
-      <!-- Project 2 -->
-      <div class="mb-8">
-        <h3 class="text-xl font-bold">User Access Configuration with MFA</h3>
-        <p class="text-gray-700 mt-2">Managed users Entra ID access, implemented dynamics security groups and enabled Conditional Access MFA for app-level authentication.</p>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="mb-8">
-        <h3 class="text-xl font-bold">Monitoring Dashboard</h3>
-        <p class="text-gray-700 mt-2">Deployed Azure Monitor and created a custom dashboard showing performance, availability, and diagnostic logs.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="py-16 bg-white" id="contact">
-    <div class="container mx-auto px-6 max-w-3xl text-center">
-      <h2 class="text-3xl font-semibold mb-4">Let’s Connect</h2>
-      <p class="text-gray-700 mb-6">Feel free to reach out using the contact form below. I’ll respond as soon as possible.</p>
-
-      <form name="contact" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" class="max-w-xl mx-auto text-left">
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+      <h2 class="text-3xl font-bold mb-6 text-center">Let’s Connect</h2>
+      <p class="text-lg text-gray-600 mb-6 text-center">Feel free to reach out using the contact form below. I’ll respond as soon as possible.</p>
+      <form name="contact" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" class="max-w-md mx-auto text-left">
         <input type="hidden" name="form-name" value="contact">
-
         <!-- Honeypot -->
         <div hidden>
           <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
         </div>
-
         <!-- Name -->
         <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-1">Name</label>
+          <label class="block text-gray-600 font-semibold mb-1">Name</label>
           <input type="text" name="name" required class="w-full border border-gray-300 rounded px-4 py-2">
         </div>
-
         <!-- Email -->
         <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-1">Email</label>
+          <label class="block text-gray-600 font-semibold mb-1">Email</label>
           <input type="email" name="email" required class="w-full border border-gray-300 rounded px-4 py-2">
         </div>
-
         <!-- Message -->
         <div class="mb-4">
-          <label class="block text-gray-700 font-semibold mb-1">Message</label>
+          <label class="block text-gray-600 font-semibold mb-1">Message</label>
           <textarea name="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2"></textarea>
         </div>
-
-        <button type="submit" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800">Send Message</button>
+        <button type="submit" class="bg-teal-500 text-white px-6 py-2 rounded hover:bg-teal-600">Send Message</button>
       </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer -->
-  <footer class="bg-blue-900 text-white py-4 text-center">
-    <p class="text-sm">&copy; 2025 Hugo Bohorquez - Cloud & Infrastructure Professional</p>
-  </footer>
+    <!-- Footer -->
+    <footer class="py-6 text-center text-gray-600">
+      <p>© 2025 Hugo Bohórquez. All rights reserved.</p>
+    </footer>
+  </div>
 </body>
 </html>
