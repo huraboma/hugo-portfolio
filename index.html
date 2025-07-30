@@ -12,6 +12,7 @@
     @media (max-width: 768px) {
       .sidebar { position: static; width: 100%; }
     }
+    .project-card:hover { transform: translateY(-4px); transition: transform 0.3s; }
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -80,17 +81,22 @@
     <section id="projects" class="py-12">
       <h2 class="text-3xl font-bold mb-6 text-center">Highlighted Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <div class="project-card bg-gray-50 p-6 rounded-lg shadow-sm">
           <h3 class="text-xl font-semibold mb-2">Azure Web App with Backend DB</h3>
           <p class="text-gray-600">Provisioned a multi-tier app using Terraform, App Services, SQL, and VNet integration. Implemented best practices for secure deployment.</p>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+        <div class="project-card bg-gray-50 p-6 rounded-lg shadow-sm">
           <h3 class="text-xl font-semibold mb-2">User Access with MFA</h3>
           <p class="text-gray-600">Managed Entra ID access, implemented dynamic security groups, and enabled Conditional Access MFA for app-level authentication.</p>
         </div>
-        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-          <h3 class="text-xl font-semibold mb-2">Monitoring Dashboard</h3>
-          <p class="text-gray-600">Deployed Azure Monitor and created a custom dashboard showing performance, availability, and diagnostic logs.</p>
+        <div class="project-card bg-gray-50 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-semibold mb-2">Observability Dashboard</h3>
+          <p class="text-gray-600">Built a cost-free observability platform using Prometheus, Grafana, and Node Exporter to monitor a Linux server (CPU, memory, disk, network). Automated deployment with Docker and visualized metrics via Grafana’s Node Exporter Full dashboard (ID: 1860). Demonstrates skills in metrics collection, visualization, and cloud-native monitoring.</p>
+          <p class="text-gray-600 mt-2"><strong>Impact:</strong> Enables real-time infrastructure monitoring, reducing downtime and optimizing performance for homelab or enterprise use.</p>
+          <div class="mt-4">
+            <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="w-full rounded-lg shadow-sm">
+            <p class="text-sm text-gray-500 mt-2">Screenshot of Grafana dashboard showing system metrics.</p>
+          </div>
         </div>
       </div>
     </section>
