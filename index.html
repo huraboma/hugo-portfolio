@@ -13,6 +13,9 @@
       .sidebar { position: static; width: 100%; }
     }
     .project-card:hover { transform: translateY(-4px); transition: transform 0.3s; }
+    .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; }
+    .modal { display: none; }
+    .modal.active { display: flex; }
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -93,12 +96,23 @@
           <h3 class="text-xl font-semibold mb-2">Observability Dashboard</h3>
           <p class="text-gray-600">Built a cost-free observability platform using Prometheus, Grafana, and Node Exporter to monitor a Linux server (CPU, memory, disk, network). Automated deployment with Docker and visualized metrics via Grafana’s Node Exporter Full dashboard (ID: 1860). Demonstrates skills in metrics collection, visualization, and cloud-native monitoring.</p>
           <p class="text-gray-600 mt-2"><strong>Impact:</strong> Enables real-time infrastructure monitoring, reducing downtime and optimizing performance for homelab or enterprise use.</p>
-          <div class="mt-4">
-            <img src="/images/observability_diagram.png" alt="Observability Diagram" class="w-full rounded-lg shadow-sm">
-            <p class="text-sm text-gray-500 mt-2">Architecture Diagram.</p>
-            <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="w-full rounded-lg shadow-sm">
-            <p class="text-sm text-gray-500 mt-2">Screenshot of Grafana dashboard showing system metrics.</p>
+          <div class="mt-4 flex space-x-4">
+            <div>
+              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_diagram')">
+              <p class="text-sm text-gray-500 mt-2 text-center">Architecture Diagram</p>
+            </div>
+            <div>
+              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_dashboard')">
+              <p class="text-sm text-gray-500 mt-2 text-center">Grafana Dashboard</p>
+            </div>
           </div>
+        </div>
+      </div>
+      <!-- Modal for Full-Size Images -->
+      <div id="modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+        <div class="relative bg-white p-4 rounded-lg max-w-3xl w-full">
+          <button class="absolute top-2 right-2 text-gray-600 hover:text-teal-500" onclick="closeModal()">✕</button>
+          <img id="modal-image" src="" alt="Full-size image" class="w-full h-auto rounded-lg">
         </div>
       </div>
     </section>
@@ -137,5 +151,20 @@
       <p>© 2025 Hugo Bohórquez. All rights reserved.</p>
     </footer>
   </div>
+
+  <!-- JavaScript for Modal -->
+  <script>
+    function openModal(imageId) {
+      const modal = document.getElementById('modal');
+      const modalImage = document.getElementById('modal-image');
+      modalImage.src = `/images/${imageId}.png`;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('active');
+    }
+  </script>
 </body>
 </html>
