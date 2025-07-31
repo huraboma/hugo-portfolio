@@ -14,8 +14,8 @@
     }
     .project-card:hover { transform: translateY(-4px); transition: transform 0.3s; }
     .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; }
-    .modal { display: none; }
-    .modal.active { display: flex; }
+    .modal { display: none !important; } /* Ensure modal is hidden by default */
+    .modal.active { display: flex !important; } /* Show modal when active */
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -98,11 +98,11 @@
           <p class="text-gray-600 mt-2"><strong>Impact:</strong> Enables real-time infrastructure monitoring, reducing downtime and optimizing performance for homelab or enterprise use.</p>
           <div class="mt-4 flex space-x-4">
             <div>
-              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_diagram')">
+              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_diagram')" aria-label="Click to view architecture diagram">
               <p class="text-sm text-gray-500 mt-2 text-center">Architecture Diagram</p>
             </div>
             <div>
-              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_dashboard')">
+              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_dashboard')" aria-label="Click to view Grafana dashboard">
               <p class="text-sm text-gray-500 mt-2 text-center">Grafana Dashboard</p>
             </div>
           </div>
@@ -111,7 +111,7 @@
       <!-- Modal for Full-Size Images -->
       <div id="modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
         <div class="relative bg-white p-4 rounded-lg max-w-3xl w-full">
-          <button class="absolute top-2 right-2 text-gray-600 hover:text-teal-500" onclick="closeModal()">✕</button>
+          <button class="absolute top-2 right-2 text-gray-600 hover:text-teal-500" onclick="closeModal()" aria-label="Close modal">✕</button>
           <img id="modal-image" src="" alt="Full-size image" class="w-full h-auto rounded-lg">
         </div>
       </div>
@@ -154,16 +154,24 @@
 
   <!-- JavaScript for Modal -->
   <script>
+    // Ensure modal is hidden on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const modal = document.getElementById('modal');
+      modal.classList.remove('active'); // Explicitly remove active class
+    });
+
     function openModal(imageId) {
       const modal = document.getElementById('modal');
       const modalImage = document.getElementById('modal-image');
-      modalImage.src = `/images/${imageId}.png`;
-      modal.classList.add('active');
+      modalImage.src = `/images/${imageId}.png`; // Set image source
+      modal.classList.add('active'); // Show modal
     }
 
     function closeModal() {
       const modal = document.getElementById('modal');
-      modal.classList.remove('active');
+      const modalImage = document.getElementById('modal-image');
+      modal.classList.remove('active'); // Hide modal
+      modalImage.src = ''; // Clear image source to avoid broken icon
     }
   </script>
 </body>
