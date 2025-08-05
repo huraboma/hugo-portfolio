@@ -14,16 +14,15 @@
     @media (max-width: 768px) {
       .sidebar { position: static; width: 100%; }
     }
-    .project-card { min-height: 320px; border: 1px solid #e5e7eb; transition: transform 0.3s, box-shadow 0.3s; }
-    .project-card:hover { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
-    .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; cursor: pointer; }
+    .project-card { min-height: 320px; border: 1px solid #e5e7eb; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); }
+    .thumbnail { cursor: pointer; pointer-events: auto; }
+    .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; }
     .modal { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
     .modal.active { display: flex; opacity: 1; }
     .modal-content { max-height: 80vh; max-width: 90vw; overflow-y: auto; }
     .modal-image { max-height: 70vh; max-width: 100%; object-fit: contain; }
     .modal-button { z-index: 1000; font-size: 1.5rem; }
-    .btn-secondary { background-color: #3b82f6; }
-    .btn-secondary:hover { background-color: #2563eb; }
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -56,9 +55,8 @@
       <h1 class="text-5xl font-bold mb-4">Hugo Bohórquez</h1>
       <p class="text-2xl text-gray-600 mb-6">Cloud Administrator | Infrastructure Specialist</p>
       <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">Crafting secure, scalable, and modern cloud environments to empower businesses.</p>
-      <div class="flex justify-center space-x-4">
+      <div class="flex justify-center">
         <a href="https://www.linkedin.com/in/hugobohorquez" class="text-teal-500 hover:text-teal-600 font-semibold text-lg">LinkedIn</a>
-        <a href="#contact" class="btn-secondary text-white px-6 py-2 rounded-lg font-semibold">Contact Me</a>
       </div>
     </section>
 
@@ -107,11 +105,11 @@
           <p class="text-gray-600 mt-3 leading-relaxed"><strong>Impact:</strong> Enables real-time infrastructure insights, reducing downtime and optimizing performance for homelab and enterprise environments.</p>
           <div class="mt-4 flex flex-wrap gap-4">
             <div>
-              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" data-index="0" aria-label="Click to view architecture diagram">
+              <img src="images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" data-index="0" aria-label="Click to view architecture diagram">
               <p class="text-sm text-gray-500 mt-2 text-center">Architecture Diagram</p>
             </div>
             <div>
-              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" data-index="1" aria-label="Click to view Grafana dashboard">
+              <img src="images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" data-index="1" aria-label="Click to view Grafana dashboard">
               <p class="text-sm text-gray-500 mt-2 text-center">Grafana Dashboard</p>
             </div>
           </div>
@@ -149,7 +147,7 @@
           <label class="block text-gray-600 font-semibold mb-1">Message</label>
           <textarea name="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2 focus:border-teal-500"></textarea>
         </div>
-        <button type="submit" class="btn-secondary text-white px-6 py-2 rounded-lg font-semibold w-full">Send Message</button>
+        <button type="submit" class="bg-teal-500 text-white px-6 py-2 rounded-lg font-semibold w-full hover:bg-teal-600">Send Message</button>
       </form>
     </section>
 
@@ -162,8 +160,8 @@
   <!-- JavaScript for Modal -->
   <script>
     const images = [
-      { src: '/images/observability_diagram.png', alt: 'Observability Diagram' },
-      { src: '/images/observability_dashboard.png', alt: 'Observability Dashboard' }
+      { src: 'images/observability_diagram.png', alt: 'Observability Diagram' },
+      { src: 'images/observability_dashboard.png', alt: 'Observability Dashboard' }
     ];
     let currentImageIndex = -1;
 
@@ -171,27 +169,34 @@
       const modal = document.getElementById('modal');
       modal.classList.remove('active'); // Ensure modal is hidden on load
 
-      // Attach click handlers to thumbnails
+      // Debug: Log thumbnail binding
+      console.log('Binding click events to thumbnails...');
       const thumbnails = document.querySelectorAll('.thumbnail');
-      thumbnails.forEach(thumbnail => {
+      thumbnails.forEach((thumbnail, index) => {
         thumbnail.addEventListener('click', () => {
-          const index = parseInt(thumbnail.getAttribute('data-index'));
+          console.log(`Thumbnail clicked: index ${index}`);
           openModal(index);
         });
       });
     });
 
     function openModal(index) {
-      if (index < 0 || index >= images.length) return;
+      console.log(`Opening modal for index: ${index}`);
+      if (index < 0 || index >= images.length) {
+        console.log('Invalid index, aborting');
+        return;
+      }
       currentImageIndex = index;
       const modal = document.getElementById('modal');
       const modalImage = document.getElementById('modal-image');
       modalImage.src = images[index].src;
       modalImage.alt = images[index].alt;
       modal.classList.add('active');
+      console.log(`Modal opened with image: ${images[index].src}`);
     }
 
     function closeModal() {
+      console.log('Closing modal');
       const modal = document.getElementById('modal');
       const modalImage = document.getElementById('modal-image');
       modal.classList.remove('active');
@@ -201,10 +206,12 @@
     }
 
     function prevImage() {
+      console.log('Navigating to previous image');
       openModal(currentImageIndex - 1);
     }
 
     function nextImage() {
+      console.log('Navigating to next image');
       openModal(currentImageIndex + 1);
     }
   </script>
