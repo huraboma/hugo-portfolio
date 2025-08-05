@@ -20,12 +20,20 @@
     .thumbnail:hover { opacity: 0.8; }
     .modal { display: none; }
     .modal.active { display: flex; }
-    .modal-content { max-height: 80vh; overflow-y: auto; }
-    .modal-image { max-height: 70vh; object-fit: contain; }
-    .carousel-thumbnail { width: 60px; height: 60px; object-fit: cover; cursor: pointer; }
+    .modal-content { max-height: 90vh; overflow-y: auto; }
+    .modal-image { width: 100%; object-fit: contain; }
+    .carousel { display: flex; overflow-x: auto; gap: 0.5rem; padding: 0.5rem 0; }
+    .carousel-thumbnail { width: 80px; height: 80px; object-fit: cover; cursor: pointer; }
     .carousel-thumbnail:hover { opacity: 0.7; }
+    .carousel-thumbnail.active { border: 2px solid #2dd4bf; }
+    .close-button { position: absolute; top: 10px; left: 10px; background: rgba(0, 0, 0, 0.5); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; font-size: 18px; cursor: pointer; }
+    .close-button:hover { background: rgba(0, 0, 0, 0.7); }
     .details { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
     .details.active { max-height: 200px; }
+    @media (max-width: 640px) {
+      .carousel { justify-content: center; }
+      .carousel-thumbnail { width: 60px; height: 60px; }
+    }
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -102,7 +110,7 @@
             <p>Utilized Azure Resource Manager (ARM) templates for infrastructure-as-code, integrated Azure Monitor for real-time performance tracking, and ensured compliance with ISO 27001 standards.</p>
           </div>
           <div class="mt-4 flex space-x-4">
-            <img src="images/project1/diagram.png" alt="Azure Web App Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project1')" aria-label="Click to view Azure Web App diagram">
+            <img src="images/project1/diagram.png" alt="Azure Web App Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project1', 0)" aria-label="Click to view Azure Web App diagram">
             <p class="text-sm text-gray-500 mt-2 text-center">Diagram</p>
           </div>
         </div>
@@ -114,7 +122,7 @@
             <p>Configured Azure AD Connect for hybrid identity synchronization, reduced unauthorized access by 95%, and automated user provisioning with PowerShell scripts.</p>
           </div>
           <div class="mt-4 flex space-x-4">
-            <img src="images/project2/dashboard.png" alt="MFA Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project2')" aria-label="Click to view MFA dashboard">
+            <img src="images/project2/dashboard.png" alt="MFA Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project2', 0)" aria-label="Click to view MFA dashboard">
             <p class="text-sm text-gray-500 mt-2 text-center">Dashboard</p>
           </div>
         </div>
@@ -127,8 +135,8 @@
             <p>Designed a Docker Compose setup for multi-container deployment, integrated Prometheus with Node Exporter for metrics scraping, and customized Grafana dashboards for actionable insights.</p>
           </div>
           <div class="mt-4 flex space-x-4">
-            <img src="images/project3/diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project3')" aria-label="Click to view observability diagram">
-            <img src="images/project3/dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project3')" aria-label="Click to view observability dashboard">
+            <img src="images/project3/diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project3', 0)" aria-label="Click to view observability diagram">
+            <img src="images/project3/dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" onclick="openImageViewer('project3', 1)" aria-label="Click to view observability dashboard">
             <p class="text-sm text-gray-500 mt-2 text-center">Diagram / Dashboard</p>
           </div>
         </div>
@@ -168,14 +176,14 @@
 
   <!-- Image Viewer Modal -->
   <div id="image-viewer" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
-    <div class="bg-white p-4 rounded-lg max-w-4xl w-full">
-      <button class="absolute top-2 right-2 text-gray-600 hover:text-teal-500" onclick="closeImageViewer()" aria-label="Close image viewer">✕</button>
-      <img id="main-image" src="" alt="Main image" class="w-full max-h-70vh object-contain mb-4">
-      <div id="carousel" class="flex overflow-x-auto space-x-2 pb-2"></div>
+    <div class="relative bg-white p-4 rounded-lg max-w-4xl w-full modal-content">
+      <button class="close-button" onclick="closeImageViewer()">✕</button>
+      <img id="main-image" src="" alt="Main image" class="modal-image">
+      <div id="carousel" class="carousel"></div>
     </div>
   </div>
 
-  <!-- JavaScript for Image Viewer and Details -->
+  <!-- JavaScript for Image Viewer, Carousel, and Details -->
   <script>
     const projectImages = {
       project1: ['diagram'],
@@ -183,24 +191,37 @@
       project3: ['diagram', 'dashboard']
     };
 
-    function openImageViewer(projectId) {
+    let currentIndex = 0;
+
+    function openImageViewer(projectId, startIndex = 0) {
       const viewer = document.getElementById('image-viewer');
       const mainImage = document.getElementById('main-image');
       const carousel = document.getElementById('carousel');
       if (viewer && mainImage && carousel) {
         viewer.classList.remove('hidden');
-        mainImage.src = `images/${projectId}/${projectImages[projectId][0]}.png`;
-        mainImage.alt = `${projectId} main image`;
+        currentIndex = startIndex;
+        updateImageViewer(projectId);
+      }
+    }
+
+    function updateImageViewer(projectId) {
+      const mainImage = document.getElementById('main-image');
+      const carousel = document.getElementById('carousel');
+      if (mainImage && carousel) {
+        const images = projectImages[projectId];
+        mainImage.src = `images/${projectId}/${images[currentIndex]}.png`;
+        mainImage.alt = `${projectId} image ${currentIndex + 1}`;
         carousel.innerHTML = '';
-        projectImages[projectId].forEach((img, index) => {
+        images.forEach((img, index) => {
           const thumb = document.createElement('img');
           thumb.src = `images/${projectId}/${img}.png`;
           thumb.alt = `${projectId} thumbnail ${index + 1}`;
           thumb.className = 'carousel-thumbnail';
           thumb.onclick = () => {
-            mainImage.src = `images/${projectId}/${img}.png`;
-            mainImage.alt = `${projectId} image ${index + 1}`;
+            currentIndex = index;
+            updateImageViewer(projectId);
           };
+          if (index === currentIndex) thumb.classList.add('active');
           carousel.appendChild(thumb);
         });
       }
@@ -220,6 +241,18 @@
       const detail = document.getElementById(id);
       if (detail) detail.classList.toggle('active');
     }
+
+    // Responsive carousel (1 image on mobile, 3 on desktop)
+    function adjustCarousel() {
+      const carousel = document.getElementById('carousel');
+      if (carousel && window.innerWidth <= 640) {
+        carousel.style.justifyContent = 'center';
+      } else if (carousel) {
+        carousel.style.justifyContent = 'flex-start';
+      }
+    }
+    window.addEventListener('resize', adjustCarousel);
+    adjustCarousel();
   </script>
 </body>
 </html>
