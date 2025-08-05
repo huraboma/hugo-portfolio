@@ -9,30 +9,32 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .nav-link:hover { color: #2dd4bf; transition: color 0.3s; }
-    .sidebar { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); }
-    .mobile-nav { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); }
+    .sidebar { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    .mobile-nav { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
     @media (max-width: 768px) {
       .sidebar { position: static; width: 100%; }
     }
-    .project-card { min-height: 300px; border: 1px solid #e5e7eb; }
-    .project-card:hover { transform: translateY(-4px); transition: transform 0.3s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
-    .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; }
-    .modal { display: none; opacity: 0; transition: opacity 0.3s; }
+    .project-card { min-height: 320px; border: 1px solid #e5e7eb; transition: transform 0.3s, box-shadow 0.3s; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); }
+    .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; cursor: pointer; }
+    .modal { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
     .modal.active { display: flex; opacity: 1; }
-    .modal-content { max-height: 80vh; overflow-y: auto; }
-    .modal-image { max-height: 70vh; object-fit: contain; }
-    .modal-button { z-index: 1000; }
+    .modal-content { max-height: 80vh; max-width: 90vw; overflow-y: auto; }
+    .modal-image { max-height: 70vh; max-width: 100%; object-fit: contain; }
+    .modal-button { z-index: 1000; font-size: 1.5rem; }
+    .btn-secondary { background-color: #3b82f6; }
+    .btn-secondary:hover { background-color: #2563eb; }
   </style>
 </head>
 <body class="bg-white text-gray-800">
   <!-- Sidebar Navigation -->
-  <nav class="sidebar fixed top-0 left-0 h-full w-40 p-4 hidden md:block">
-    <div class="flex flex-col space-y-4">
-      <a href="#home" class="nav-link text-base font-semibold hover:text-teal-500">Home</a>
-      <a href="#about" class="nav-link text-base font-semibold hover:text-teal-500">About</a>
-      <a href="#skills" class="nav-link text-base font-semibold hover:text-teal-500">Skills</a>
-      <a href="#projects" class="nav-link text-base font-semibold hover:text-teal-500">Projects</a>
-      <a href="#contact" class="nav-link text-base font-semibold hover:text-teal-500">Contact</a>
+  <nav class="sidebar fixed top-0 left-0 h-full w-48 p-6 hidden md:block">
+    <div class="flex flex-col space-y-5">
+      <a href="#home" class="nav-link text-lg font-semibold hover:text-teal-500">Home</a>
+      <a href="#about" class="nav-link text-lg font-semibold hover:text-teal-500">About</a>
+      <a href="#skills" class="nav-link text-lg font-semibold hover:text-teal-500">Skills</a>
+      <a href="#projects" class="nav-link text-lg font-semibold hover:text-teal-500">Projects</a>
+      <a href="#contact" class="nav-link text-lg font-semibold hover:text-teal-500">Contact</a>
     </div>
   </nav>
 
@@ -48,67 +50,68 @@
   </nav>
 
   <!-- Main Content -->
-  <div class="max-w-5xl mx-auto px-6 py-12">
+  <div class="max-w-6xl mx-auto px-6 py-12">
     <!-- Hero Section -->
-    <section id="home" class="py-16 flex flex-col justify-center text-center bg-gray-50 rounded-lg">
+    <section id="home" class="py-20 flex flex-col justify-center text-center bg-gradient-to-b from-gray-50 to-gray-100 rounded-xl">
       <h1 class="text-5xl font-bold mb-4">Hugo Bohórquez</h1>
       <p class="text-2xl text-gray-600 mb-6">Cloud Administrator | Infrastructure Specialist</p>
-      <p class="text-lg text-gray-600 mb-6 leading-relaxed">Helping businesses build secure, scalable, and modern cloud environments.</p>
-      <div class="flex justify-center">
-        <a href="https://www.linkedin.com/in/hugobohorquez" class="text-teal-500 hover:underline font-semibold">LinkedIn</a>
+      <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">Crafting secure, scalable, and modern cloud environments to empower businesses.</p>
+      <div class="flex justify-center space-x-4">
+        <a href="https://www.linkedin.com/in/hugobohorquez" class="text-teal-500 hover:text-teal-600 font-semibold text-lg">LinkedIn</a>
+        <a href="#contact" class="btn-secondary text-white px-6 py-2 rounded-lg font-semibold">Contact Me</a>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16">
+    <section id="about" class="py-20">
       <h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
       <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-        I’m an experienced infrastructure professional with 15+ years in enterprise environments, specializing in Azure cloud solutions, scripting, automation, and secure architecture. I’ve led cloud transformations, implemented monitoring and reporting systems, and collaborated with diverse teams across the globe.
+        With over 15 years in enterprise infrastructure, I specialize in Azure cloud solutions, automation, and secure architecture. I’ve led cloud migrations, deployed robust monitoring systems, and collaborated globally to deliver scalable, high-performance environments. My focus is on optimizing infrastructure for reliability and efficiency, leveraging tools like Terraform, PowerShell, and Grafana.
       </p>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 bg-gray-50 rounded-lg">
+    <section id="skills" class="py-20 bg-gray-50 rounded-xl">
       <h2 class="text-4xl font-bold mb-8 text-center">Skills & Technologies</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <h3 class="text-xl font-semibold mb-2">Cloud & Automation</h3>
-          <p class="text-gray-600 leading-relaxed">Azure IaaS/PaaS, Terraform, PowerShell</p>
+        <div class="text-center p-4">
+          <h3 class="text-xl font-semibold mb-3">Cloud & Automation</h3>
+          <p class="text-gray-600 leading-relaxed">Azure IaaS/PaaS, Terraform, PowerShell, Docker</p>
         </div>
-        <div class="text-center">
-          <h3 class="text-xl font-semibold mb-2">Databases</h3>
+        <div class="text-center p-4">
+          <h3 class="text-xl font-semibold mb-3">Databases</h3>
           <p class="text-gray-600 leading-relaxed">Azure SQL, MSSQL, MySQL</p>
         </div>
-        <div class="text-center">
-          <h3 class="text-xl font-semibold mb-2">Security & Monitoring</h3>
-          <p class="text-gray-600 leading-relaxed">MFA, Defender, Log Analytics, Power BI</p>
+        <div class="text-center p-4">
+          <h3 class="text-xl font-semibold mb-3">Security & Monitoring</h3>
+          <p class="text-gray-600 leading-relaxed">MFA, Defender, Log Analytics, Prometheus, Grafana</p>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16">
+    <section id="projects" class="py-20">
       <h2 class="text-4xl font-bold mb-8 text-center">Highlighted Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="project-card bg-gray-50 p-6 rounded-lg">
           <h3 class="text-xl font-semibold mb-3">Azure Web App with Backend DB</h3>
-          <p class="text-gray-600 leading-relaxed">Provisioned a multi-tier app using Terraform, App Services, SQL, and VNet integration. Implemented best practices for secure deployment.</p>
+          <p class="text-gray-600 leading-relaxed">Provisioned a multi-tier application using Terraform, Azure App Services, Azure SQL, and VNet integration. Implemented secure deployment practices, ensuring scalability and high availability.</p>
         </div>
         <div class="project-card bg-gray-50 p-6 rounded-lg">
           <h3 class="text-xl font-semibold mb-3">User Access with MFA</h3>
-          <p class="text-gray-600 leading-relaxed">Managed Entra ID access, implemented dynamic security groups, and enabled Conditional Access MFA for app-level authentication.</p>
+          <p class="text-gray-600 leading-relaxed">Managed Entra ID for secure access, implementing dynamic security groups and Conditional Access MFA policies to enhance application security.</p>
         </div>
         <div class="project-card bg-gray-50 p-6 rounded-lg">
           <h3 class="text-xl font-semibold mb-3">Observability Dashboard</h3>
-          <p class="text-gray-600 leading-relaxed">Built a cost-free observability platform using Prometheus, Grafana, and Node Exporter to monitor a Linux server (CPU, memory, disk, network). Automated deployment with Docker and visualized metrics via Grafana’s Node Exporter Full dashboard (ID: 1860). Demonstrates skills in metrics collection, visualization, and cloud-native monitoring.</p>
-          <p class="text-gray-600 mt-3 leading-relaxed"><strong>Impact:</strong> Enables real-time infrastructure monitoring, reducing downtime and optimizing performance for homelab or enterprise use.</p>
-          <div class="mt-4 flex space-x-4">
+          <p class="text-gray-600 leading-relaxed">Developed a cost-free observability platform using Prometheus, Grafana, and Node Exporter to monitor a Linux server (IP: 192.168.50.99) for CPU, memory, disk, and network metrics. Automated deployment with Docker and visualized data via Grafana’s Node Exporter Full dashboard (ID: 1860). Showcases expertise in cloud-native monitoring, metrics collection, and automation.</p>
+          <p class="text-gray-600 mt-3 leading-relaxed"><strong>Impact:</strong> Enables real-time infrastructure insights, reducing downtime and optimizing performance for homelab and enterprise environments.</p>
+          <div class="mt-4 flex flex-wrap gap-4">
             <div>
-              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal(0)" aria-label="Click to view architecture diagram">
+              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" data-index="0" aria-label="Click to view architecture diagram">
               <p class="text-sm text-gray-500 mt-2 text-center">Architecture Diagram</p>
             </div>
             <div>
-              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal(1)" aria-label="Click to view Grafana dashboard">
+              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" data-index="1" aria-label="Click to view Grafana dashboard">
               <p class="text-sm text-gray-500 mt-2 text-center">Grafana Dashboard</p>
             </div>
           </div>
@@ -126,31 +129,27 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50 rounded-lg">
+    <section id="contact" class="py-20 bg-gray-50 rounded-xl">
       <h2 class="text-4xl font-bold mb-8 text-center">Let’s Connect</h2>
-      <p class="text-lg text-gray-600 mb-8 text-center leading-relaxed">Feel free to reach out using the contact form below. I’ll respond as soon as possible.</p>
+      <p class="text-lg text-gray-600 mb-8 text-center leading-relaxed">Interested in discussing cloud solutions or opportunities? Reach out via the form below.</p>
       <form name="contact" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" class="max-w-md mx-auto text-left">
         <input type="hidden" name="form-name" value="contact">
-        <!-- Honeypot -->
         <div hidden>
           <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
         </div>
-        <!-- Name -->
         <div class="mb-4">
           <label class="block text-gray-600 font-semibold mb-1">Name</label>
-          <input type="text" name="name" required class="w-full border border-gray-300 rounded px-4 py-2">
+          <input type="text" name="name" required class="w-full border border-gray-300 rounded px-4 py-2 focus:border-teal-500">
         </div>
-        <!-- Email -->
         <div class="mb-4">
           <label class="block text-gray-600 font-semibold mb-1">Email</label>
-          <input type="email" name="email" required class="w-full border border-gray-300 rounded px-4 py-2">
+          <input type="email" name="email" required class="w-full border border-gray-300 rounded px-4 py-2 focus:border-teal-500">
         </div>
-        <!-- Message -->
         <div class="mb-4">
           <label class="block text-gray-600 font-semibold mb-1">Message</label>
-          <textarea name="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2"></textarea>
+          <textarea name="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2 focus:border-teal-500"></textarea>
         </div>
-        <button type="submit" class="bg-teal-500 text-white px-6 py-2 rounded hover:bg-teal-600">Send Message</button>
+        <button type="submit" class="btn-secondary text-white px-6 py-2 rounded-lg font-semibold w-full">Send Message</button>
       </form>
     </section>
 
@@ -166,11 +165,20 @@
       { src: '/images/observability_diagram.png', alt: 'Observability Diagram' },
       { src: '/images/observability_dashboard.png', alt: 'Observability Dashboard' }
     ];
-    let currentImageIndex = 0;
+    let currentImageIndex = -1;
 
     document.addEventListener('DOMContentLoaded', () => {
       const modal = document.getElementById('modal');
       modal.classList.remove('active'); // Ensure modal is hidden on load
+
+      // Attach click handlers to thumbnails
+      const thumbnails = document.querySelectorAll('.thumbnail');
+      thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', () => {
+          const index = parseInt(thumbnail.getAttribute('data-index'));
+          openModal(index);
+        });
+      });
     });
 
     function openModal(index) {
@@ -189,6 +197,7 @@
       modal.classList.remove('active');
       modalImage.src = '';
       modalImage.alt = 'Full-size image';
+      currentImageIndex = -1;
     }
 
     function prevImage() {
