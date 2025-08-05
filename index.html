@@ -9,18 +9,24 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     .nav-link:hover { color: #2dd4bf; transition: color 0.3s; }
+    .sidebar { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); }
+    .mobile-nav { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); }
     @media (max-width: 768px) {
       .sidebar { position: static; width: 100%; }
     }
-    .project-card:hover { transform: translateY(-4px); transition: transform 0.3s; }
+    .project-card { min-height: 300px; border: 1px solid #e5e7eb; }
+    .project-card:hover { transform: translateY(-4px); transition: transform 0.3s; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
     .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; }
-    .modal { display: none !important; } /* Ensure modal is hidden by default */
-    .modal.active { display: flex !important; } /* Show modal when active */
+    .modal { display: none; opacity: 0; transition: opacity 0.3s; }
+    .modal.active { display: flex; opacity: 1; }
+    .modal-content { max-height: 80vh; overflow-y: auto; }
+    .modal-image { max-height: 70vh; object-fit: contain; }
+    .modal-button { z-index: 1000; }
   </style>
 </head>
 <body class="bg-white text-gray-800">
   <!-- Sidebar Navigation -->
-  <nav class="sidebar fixed top-0 left-0 h-full w-40 bg-gray-50 p-4 hidden md:block">
+  <nav class="sidebar fixed top-0 left-0 h-full w-40 p-4 hidden md:block">
     <div class="flex flex-col space-y-4">
       <a href="#home" class="nav-link text-base font-semibold hover:text-teal-500">Home</a>
       <a href="#about" class="nav-link text-base font-semibold hover:text-teal-500">About</a>
@@ -31,7 +37,7 @@
   </nav>
 
   <!-- Mobile Navigation -->
-  <nav class="md:hidden bg-gray-50 p-4 sticky top-0 z-10">
+  <nav class="mobile-nav md:hidden p-4 sticky top-0 z-10">
     <div class="flex justify-center space-x-4">
       <a href="#home" class="nav-link text-sm font-semibold hover:text-teal-500">Home</a>
       <a href="#about" class="nav-link text-sm font-semibold hover:text-teal-500">About</a>
@@ -42,67 +48,67 @@
   </nav>
 
   <!-- Main Content -->
-  <div class="max-w-4xl mx-auto px-4 py-10">
+  <div class="max-w-5xl mx-auto px-6 py-12">
     <!-- Hero Section -->
-    <section id="home" class="py-12 flex flex-col justify-center text-center">
+    <section id="home" class="py-16 flex flex-col justify-center text-center bg-gray-50 rounded-lg">
       <h1 class="text-5xl font-bold mb-4">Hugo Bohórquez</h1>
       <p class="text-2xl text-gray-600 mb-6">Cloud Administrator | Infrastructure Specialist</p>
-      <p class="text-lg text-gray-600 mb-6">Helping businesses build secure, scalable, and modern cloud environments.</p>
+      <p class="text-lg text-gray-600 mb-6 leading-relaxed">Helping businesses build secure, scalable, and modern cloud environments.</p>
       <div class="flex justify-center">
-        <a href="https://www.linkedin.com/in/hugobohorquez" class="text-teal-500 hover:underline">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/hugobohorquez" class="text-teal-500 hover:underline font-semibold">LinkedIn</a>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-12">
-      <h2 class="text-3xl font-bold mb-6 text-center">About Me</h2>
-      <p class="text-lg text-gray-600 leading-relaxed">
+    <section id="about" class="py-16">
+      <h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
+      <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
         I’m an experienced infrastructure professional with 15+ years in enterprise environments, specializing in Azure cloud solutions, scripting, automation, and secure architecture. I’ve led cloud transformations, implemented monitoring and reporting systems, and collaborated with diverse teams across the globe.
       </p>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-12 bg-gray-50">
-      <h2 class="text-3xl font-bold mb-6 text-center">Skills & Technologies</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section id="skills" class="py-16 bg-gray-50 rounded-lg">
+      <h2 class="text-4xl font-bold mb-8 text-center">Skills & Technologies</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center">
           <h3 class="text-xl font-semibold mb-2">Cloud & Automation</h3>
-          <p class="text-gray-600">Azure IaaS/PaaS, Terraform, PowerShell</p>
+          <p class="text-gray-600 leading-relaxed">Azure IaaS/PaaS, Terraform, PowerShell</p>
         </div>
         <div class="text-center">
           <h3 class="text-xl font-semibold mb-2">Databases</h3>
-          <p class="text-gray-600">Azure SQL, MSSQL, MySQL</p>
+          <p class="text-gray-600 leading-relaxed">Azure SQL, MSSQL, MySQL</p>
         </div>
         <div class="text-center">
           <h3 class="text-xl font-semibold mb-2">Security & Monitoring</h3>
-          <p class="text-gray-600">MFA, Defender, Log Analytics, Power BI</p>
+          <p class="text-gray-600 leading-relaxed">MFA, Defender, Log Analytics, Power BI</p>
         </div>
       </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-12">
-      <h2 class="text-3xl font-bold mb-6 text-center">Highlighted Projects</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="project-card bg-gray-50 p-6 rounded-lg shadow-sm">
-          <h3 class="text-xl font-semibold mb-2">Azure Web App with Backend DB</h3>
-          <p class="text-gray-600">Provisioned a multi-tier app using Terraform, App Services, SQL, and VNet integration. Implemented best practices for secure deployment.</p>
+    <section id="projects" class="py-16">
+      <h2 class="text-4xl font-bold mb-8 text-center">Highlighted Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="project-card bg-gray-50 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-3">Azure Web App with Backend DB</h3>
+          <p class="text-gray-600 leading-relaxed">Provisioned a multi-tier app using Terraform, App Services, SQL, and VNet integration. Implemented best practices for secure deployment.</p>
         </div>
-        <div class="project-card bg-gray-50 p-6 rounded-lg shadow-sm">
-          <h3 class="text-xl font-semibold mb-2">User Access with MFA</h3>
-          <p class="text-gray-600">Managed Entra ID access, implemented dynamic security groups, and enabled Conditional Access MFA for app-level authentication.</p>
+        <div class="project-card bg-gray-50 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-3">User Access with MFA</h3>
+          <p class="text-gray-600 leading-relaxed">Managed Entra ID access, implemented dynamic security groups, and enabled Conditional Access MFA for app-level authentication.</p>
         </div>
-        <div class="project-card bg-gray-50 p-6 rounded-lg shadow-sm">
-          <h3 class="text-xl font-semibold mb-2">Observability Dashboard</h3>
-          <p class="text-gray-600">Built a cost-free observability platform using Prometheus, Grafana, and Node Exporter to monitor a Linux server (CPU, memory, disk, network). Automated deployment with Docker and visualized metrics via Grafana’s Node Exporter Full dashboard (ID: 1860). Demonstrates skills in metrics collection, visualization, and cloud-native monitoring.</p>
-          <p class="text-gray-600 mt-2"><strong>Impact:</strong> Enables real-time infrastructure monitoring, reducing downtime and optimizing performance for homelab or enterprise use.</p>
+        <div class="project-card bg-gray-50 p-6 rounded-lg">
+          <h3 class="text-xl font-semibold mb-3">Observability Dashboard</h3>
+          <p class="text-gray-600 leading-relaxed">Built a cost-free observability platform using Prometheus, Grafana, and Node Exporter to monitor a Linux server (CPU, memory, disk, network). Automated deployment with Docker and visualized metrics via Grafana’s Node Exporter Full dashboard (ID: 1860). Demonstrates skills in metrics collection, visualization, and cloud-native monitoring.</p>
+          <p class="text-gray-600 mt-3 leading-relaxed"><strong>Impact:</strong> Enables real-time infrastructure monitoring, reducing downtime and optimizing performance for homelab or enterprise use.</p>
           <div class="mt-4 flex space-x-4">
             <div>
-              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_diagram')" aria-label="Click to view architecture diagram">
+              <img src="/images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal(0)" aria-label="Click to view architecture diagram">
               <p class="text-sm text-gray-500 mt-2 text-center">Architecture Diagram</p>
             </div>
             <div>
-              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal('observability_dashboard')" aria-label="Click to view Grafana dashboard">
+              <img src="/images/observability_dashboard.png" alt="Observability Dashboard" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm cursor-pointer" onclick="openModal(1)" aria-label="Click to view Grafana dashboard">
               <p class="text-sm text-gray-500 mt-2 text-center">Grafana Dashboard</p>
             </div>
           </div>
@@ -110,17 +116,19 @@
       </div>
       <!-- Modal for Full-Size Images -->
       <div id="modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-        <div class="relative bg-white p-4 rounded-lg max-w-3xl w-full">
-          <button class="absolute top-2 right-2 text-gray-600 hover:text-teal-500" onclick="closeModal()" aria-label="Close modal">✕</button>
-          <img id="modal-image" src="" alt="Full-size image" class="w-full h-auto rounded-lg">
+        <div class="relative bg-white p-6 rounded-lg max-w-4xl w-full modal-content">
+          <button class="modal-button absolute top-4 right-4 text-2xl text-gray-600 hover:text-teal-500" onclick="closeModal()" aria-label="Close modal">✕</button>
+          <button class="modal-button absolute left-4 top-1/2 transform -translate-y-1/2 text-2xl text-gray-600 hover:text-teal-500" onclick="prevImage()" aria-label="Previous image">&lt;</button>
+          <button class="modal-button absolute right-4 top-1/2 transform -translate-y-1/2 text-2xl text-gray-600 hover:text-teal-500" onclick="nextImage()" aria-label="Next image">&gt;</button>
+          <img id="modal-image" src="" alt="Full-size image" class="modal-image w-full rounded-lg">
         </div>
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-12 bg-gray-50">
-      <h2 class="text-3xl font-bold mb-6 text-center">Let’s Connect</h2>
-      <p class="text-lg text-gray-600 mb-6 text-center">Feel free to reach out using the contact form below. I’ll respond as soon as possible.</p>
+    <section id="contact" class="py-16 bg-gray-50 rounded-lg">
+      <h2 class="text-4xl font-bold mb-8 text-center">Let’s Connect</h2>
+      <p class="text-lg text-gray-600 mb-8 text-center leading-relaxed">Feel free to reach out using the contact form below. I’ll respond as soon as possible.</p>
       <form name="contact" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" class="max-w-md mx-auto text-left">
         <input type="hidden" name="form-name" value="contact">
         <!-- Honeypot -->
@@ -147,31 +155,48 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-6 text-center text-gray-600">
+    <footer class="py-8 text-center text-gray-600">
       <p>© 2025 Hugo Bohórquez. All rights reserved.</p>
     </footer>
   </div>
 
   <!-- JavaScript for Modal -->
   <script>
-    // Ensure modal is hidden on page load
+    const images = [
+      { src: '/images/observability_diagram.png', alt: 'Observability Diagram' },
+      { src: '/images/observability_dashboard.png', alt: 'Observability Dashboard' }
+    ];
+    let currentImageIndex = 0;
+
     document.addEventListener('DOMContentLoaded', () => {
       const modal = document.getElementById('modal');
-      modal.classList.remove('active'); // Explicitly remove active class
+      modal.classList.remove('active'); // Ensure modal is hidden on load
     });
 
-    function openModal(imageId) {
+    function openModal(index) {
+      if (index < 0 || index >= images.length) return;
+      currentImageIndex = index;
       const modal = document.getElementById('modal');
       const modalImage = document.getElementById('modal-image');
-      modalImage.src = `/images/${imageId}.png`; // Set image source
-      modal.classList.add('active'); // Show modal
+      modalImage.src = images[index].src;
+      modalImage.alt = images[index].alt;
+      modal.classList.add('active');
     }
 
     function closeModal() {
       const modal = document.getElementById('modal');
       const modalImage = document.getElementById('modal-image');
-      modal.classList.remove('active'); // Hide modal
-      modalImage.src = ''; // Clear image source to avoid broken icon
+      modal.classList.remove('active');
+      modalImage.src = '';
+      modalImage.alt = 'Full-size image';
+    }
+
+    function prevImage() {
+      openModal(currentImageIndex - 1);
+    }
+
+    function nextImage() {
+      openModal(currentImageIndex + 1);
     }
   </script>
 </body>
