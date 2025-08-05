@@ -8,24 +8,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    .nav-link:hover { color: #2dd4bf; transition: color 0.3s; }
-    .sidebar { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
-    .mobile-nav { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    .nav-link:hover { color: #2dd4bf; transition: color 0.3s ease; }
+    .sidebar { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
+    .mobile-nav { background: linear-gradient(to bottom, #f9fafb, #e5e7eb); box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
     @media (max-width: 768px) {
       .sidebar { position: static; width: 100%; }
     }
-    .project-card { min-height: 320px; border: 1px solid #e5e7eb; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .project-card { border: 1px solid #e5e7eb; transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .project-card:hover { transform: translateY(-6px); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); }
-    .thumbnail { cursor: pointer; pointer-events: auto; }
-    .thumbnail:hover { opacity: 0.8; transition: opacity 0.3s; }
+    .thumbnail { cursor: pointer; transition: opacity 0.3s ease; }
+    .thumbnail:hover { opacity: 0.8; }
     .modal { display: none; opacity: 0; transition: opacity 0.3s ease-in-out; }
     .modal.active { display: flex; opacity: 1; }
     .modal-content { max-height: 80vh; max-width: 90vw; overflow-y: auto; }
     .modal-image { max-height: 70vh; max-width: 100%; object-fit: contain; }
     .modal-button { z-index: 1000; font-size: 1.5rem; }
+    .details { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .details.active { max-height: 300px; }
   </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-gray-50 text-gray-700 animate-fade">
   <!-- Sidebar Navigation -->
   <nav class="sidebar fixed top-0 left-0 h-full w-48 p-6 hidden md:block">
     <div class="flex flex-col space-y-5">
@@ -51,8 +53,8 @@
   <!-- Main Content -->
   <div class="max-w-6xl mx-auto px-6 py-12">
     <!-- Hero Section -->
-    <section id="home" class="py-20 flex flex-col justify-center text-center bg-gradient-to-b from-gray-50 to-gray-100 rounded-xl">
-      <h1 class="text-5xl font-bold mb-4">Hugo Bohórquez</h1>
+    <section id="home" class="py-20 text-center bg-gradient-to-br from-teal-50 to-gray-100 rounded-xl shadow-md animate-fade-in">
+      <h1 class="text-5xl font-bold text-gray-800 mb-4">Hugo Bohórquez</h1>
       <p class="text-2xl text-gray-600 mb-6">Cloud Administrator | Infrastructure Specialist</p>
       <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">Crafting secure, scalable, and modern cloud environments to empower businesses.</p>
       <div class="flex justify-center">
@@ -62,26 +64,26 @@
 
     <!-- About Section -->
     <section id="about" class="py-20">
-      <h2 class="text-4xl font-bold mb-8 text-center">About Me</h2>
+      <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">About Me</h2>
       <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
         With over 15 years in enterprise infrastructure, I specialize in Azure cloud solutions, automation, and secure architecture. I’ve led cloud migrations, deployed robust monitoring systems, and collaborated globally to deliver scalable, high-performance environments. My focus is on optimizing infrastructure for reliability and efficiency, leveraging tools like Terraform, PowerShell, and Grafana.
       </p>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-50 rounded-xl">
-      <h2 class="text-4xl font-bold mb-8 text-center">Skills & Technologies</h2>
+    <section id="skills" class="py-20 bg-white rounded-xl shadow-md">
+      <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Skills & Technologies</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center p-4">
-          <h3 class="text-xl font-semibold mb-3">Cloud & Automation</h3>
+        <div class="p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Cloud & Automation</h3>
           <p class="text-gray-600 leading-relaxed">Azure IaaS/PaaS, Terraform, PowerShell, Docker</p>
         </div>
-        <div class="text-center p-4">
-          <h3 class="text-xl font-semibold mb-3">Databases</h3>
+        <div class="p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Databases</h3>
           <p class="text-gray-600 leading-relaxed">Azure SQL, MSSQL, MySQL</p>
         </div>
-        <div class="text-center p-4">
-          <h3 class="text-xl font-semibold mb-3">Security & Monitoring</h3>
+        <div class="p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Security & Monitoring</h3>
           <p class="text-gray-600 leading-relaxed">MFA, Defender, Log Analytics, Prometheus, Grafana</p>
         </div>
       </div>
@@ -89,20 +91,32 @@
 
     <!-- Projects Section -->
     <section id="projects" class="py-20">
-      <h2 class="text-4xl font-bold mb-8 text-center">Highlighted Projects</h2>
+      <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Highlighted Projects</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="project-card bg-gray-50 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">Azure Web App with Backend DB</h3>
+        <div class="project-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Azure Web App with Backend DB</h3>
           <p class="text-gray-600 leading-relaxed">Provisioned a multi-tier application using Terraform, Azure App Services, Azure SQL, and VNet integration. Implemented secure deployment practices, ensuring scalability and high availability.</p>
+          <button class="text-teal-500 mt-2 hover:underline focus:outline-none" onclick="toggleDetails('details1')">View Details</button>
+          <div id="details1" class="details mt-2 text-sm text-gray-600">
+            <p>Utilized Azure Resource Manager (ARM) templates for infrastructure-as-code, integrated with Azure Monitor for real-time performance tracking, and ensured compliance with ISO 27001 standards.</p>
+          </div>
         </div>
-        <div class="project-card bg-gray-50 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">User Access with MFA</h3>
+        <div class="project-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">User Access with MFA</h3>
           <p class="text-gray-600 leading-relaxed">Managed Entra ID for secure access, implementing dynamic security groups and Conditional Access MFA policies to enhance application security.</p>
+          <button class="text-teal-500 mt-2 hover:underline focus:outline-none" onclick="toggleDetails('details2')">View Details</button>
+          <div id="details2" class="details mt-2 text-sm text-gray-600">
+            <p>Configured Azure AD Connect for hybrid identity synchronization, reduced unauthorized access by 95%, and automated user provisioning with PowerShell scripts.</p>
+          </div>
         </div>
-        <div class="project-card bg-gray-50 p-6 rounded-lg">
-          <h3 class="text-xl font-semibold mb-3">Observability Dashboard</h3>
+        <div class="project-card bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Observability Dashboard</h3>
           <p class="text-gray-600 leading-relaxed">Developed a cost-free observability platform using Prometheus, Grafana, and Node Exporter to monitor a Linux server (IP: 192.168.50.99) for CPU, memory, disk, and network metrics. Automated deployment with Docker and visualized data via Grafana’s Node Exporter Full dashboard (ID: 1860). Showcases expertise in cloud-native monitoring, metrics collection, and automation.</p>
           <p class="text-gray-600 mt-3 leading-relaxed"><strong>Impact:</strong> Enables real-time infrastructure insights, reducing downtime and optimizing performance for homelab and enterprise environments.</p>
+          <button class="text-teal-500 mt-2 hover:underline focus:outline-none" onclick="toggleDetails('details3')">View Details</button>
+          <div id="details3" class="details mt-2 text-sm text-gray-600">
+            <p>Designed a Docker Compose setup for multi-container deployment, integrated Prometheus with Node Exporter for metrics scraping, and customized Grafana dashboards for actionable insights.</p>
+          </div>
           <div class="mt-4 flex flex-wrap gap-4">
             <div>
               <img src="images/observability_diagram.png" alt="Observability Diagram" class="thumbnail w-32 h-32 object-cover rounded-lg shadow-sm" data-index="0" aria-label="Click to view architecture diagram">
@@ -127,8 +141,8 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50 rounded-xl">
-      <h2 class="text-4xl font-bold mb-8 text-center">Let’s Connect</h2>
+    <section id="contact" class="py-20 bg-white rounded-xl shadow-md">
+      <h2 class="text-4xl font-bold text-gray-800 mb-8 text-center">Let’s Connect</h2>
       <p class="text-lg text-gray-600 mb-8 text-center leading-relaxed">Interested in discussing cloud solutions or opportunities? Reach out via the form below.</p>
       <form name="contact" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" class="max-w-md mx-auto text-left">
         <input type="hidden" name="form-name" value="contact">
@@ -147,7 +161,7 @@
           <label class="block text-gray-600 font-semibold mb-1">Message</label>
           <textarea name="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2 focus:border-teal-500"></textarea>
         </div>
-        <button type="submit" class="bg-teal-500 text-white px-6 py-2 rounded-lg font-semibold w-full hover:bg-teal-600">Send Message</button>
+        <button type="submit" class="bg-teal-500 text-white px-6 py-2 rounded-lg font-semibold w-full hover:bg-teal-600 transition-colors">Send Message</button>
       </form>
     </section>
 
@@ -157,7 +171,7 @@
     </footer>
   </div>
 
-  <!-- JavaScript for Modal -->
+  <!-- JavaScript -->
   <script>
     const images = [
       { src: 'images/observability_diagram.png', alt: 'Observability Diagram' },
@@ -166,22 +180,48 @@
     let currentImageIndex = -1;
 
     document.addEventListener('DOMContentLoaded', () => {
-      const modal = document.getElementById('modal');
-      modal.classList.remove('active'); // Ensure modal is hidden on load
+      console.log('DOM fully loaded, initializing scripts...');
 
-      // Debug: Log thumbnail binding
-      console.log('Binding click events to thumbnails...');
+      // Modal initialization
+      const modal = document.getElementById('modal');
+      if (modal) {
+        modal.classList.remove('active');
+        console.log('Modal initialized');
+      } else {
+        console.error('Modal element not found');
+      }
+
+      // Thumbnail click handlers
       const thumbnails = document.querySelectorAll('.thumbnail');
-      thumbnails.forEach((thumbnail, index) => {
-        thumbnail.addEventListener('click', () => {
-          console.log(`Thumbnail clicked: index ${index}`);
-          openModal(index);
+      if (thumbnails.length > 0) {
+        thumbnails.forEach((thumbnail, index) => {
+          thumbnail.addEventListener('click', () => {
+            console.log(`Thumbnail clicked: index ${index}`);
+            openModal(index);
+          });
+        });
+        console.log('Thumbnail click events bound');
+      } else {
+        console.error('No thumbnails found');
+      }
+
+      // Details toggle handlers
+      const detailButtons = document.querySelectorAll('[onclick^="toggleDetails"]');
+      detailButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const detailId = button.getAttribute('onclick').replace('toggleDetails(', '').replace(')', '');
+          const detail = document.getElementById(detailId);
+          if (detail) {
+            detail.classList.toggle('active');
+            console.log(`Toggled details for ${detailId}`);
+          }
         });
       });
     });
 
     function openModal(index) {
-      console.log(`Opening modal for index: ${index}`);
+      console.log(`Attempting to open modal for index: ${index}`);
       if (index < 0 || index >= images.length) {
         console.log('Invalid index, aborting');
         return;
@@ -189,20 +229,26 @@
       currentImageIndex = index;
       const modal = document.getElementById('modal');
       const modalImage = document.getElementById('modal-image');
-      modalImage.src = images[index].src;
-      modalImage.alt = images[index].alt;
-      modal.classList.add('active');
-      console.log(`Modal opened with image: ${images[index].src}`);
+      if (modal && modalImage) {
+        modalImage.src = images[index].src;
+        modalImage.alt = images[index].alt;
+        modal.classList.add('active');
+        console.log(`Modal opened with image: ${images[index].src}`);
+      } else {
+        console.error('Modal or modal-image element not found');
+      }
     }
 
     function closeModal() {
       console.log('Closing modal');
       const modal = document.getElementById('modal');
       const modalImage = document.getElementById('modal-image');
-      modal.classList.remove('active');
-      modalImage.src = '';
-      modalImage.alt = 'Full-size image';
-      currentImageIndex = -1;
+      if (modal && modalImage) {
+        modal.classList.remove('active');
+        modalImage.src = '';
+        modalImage.alt = 'Full-size image';
+        currentImageIndex = -1;
+      }
     }
 
     function prevImage() {
@@ -213,6 +259,11 @@
     function nextImage() {
       console.log('Navigating to next image');
       openModal(currentImageIndex + 1);
+    }
+
+    function toggleDetails(id) {
+      const detail = document.getElementById(id);
+      if (detail) detail.classList.toggle('active');
     }
   </script>
 </body>
